@@ -45,10 +45,11 @@ class DogImagesFragment : BaseFragment() {
     private fun observeData() {
         viewModel.listOfDogImages.observe(viewLifecycleOwner) {
             binding.rvDogGrid.apply {
-                adapter = DogImageGridAdapter(it)
+                val spacing = resources.getDimension(R.dimen.grid_dog_images_spacing).toInt()
+                adapter = DogImageGridAdapter(requireContext(), 3, it)
                 addItemDecoration(GridSpacingItemDecoration(
                     3,
-                    resources.getDimension(R.dimen.grid_dog_images_spacing).toInt(),
+                    spacing,
                     true
                 ))
                 layoutManager = GridLayoutManager(

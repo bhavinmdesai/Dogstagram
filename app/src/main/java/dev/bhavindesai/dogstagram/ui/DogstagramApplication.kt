@@ -1,7 +1,6 @@
 package dev.bhavindesai.dogstagram.ui
 
 import android.app.Application
-import com.facebook.drawee.backends.pipeline.Fresco
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector
 import dev.bhavindesai.data.utils.InternetUtil
@@ -16,7 +15,6 @@ class DogstagramApplication : Application(), HasAndroidInjector {
     override fun onCreate() {
         super.onCreate()
 
-        Fresco.initialize(this)
         InternetUtil.init(this)
 
         DaggerAppComponent

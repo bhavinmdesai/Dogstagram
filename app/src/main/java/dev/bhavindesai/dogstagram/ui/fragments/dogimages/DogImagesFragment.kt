@@ -6,14 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import dev.bhavindesai.dogstagram.R
 import dev.bhavindesai.dogstagram.databinding.FragmentDogImagesBinding
 import dev.bhavindesai.dogstagram.ui.fragments.base.BaseFragment
 import dev.bhavindesai.viewmodels.DogImagesViewModel
 import kotlinx.coroutines.FlowPreview
-import kotlin.math.roundToInt
 
 class DogImagesFragment : BaseFragment() {
 

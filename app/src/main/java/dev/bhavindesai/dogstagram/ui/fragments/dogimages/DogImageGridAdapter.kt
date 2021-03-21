@@ -3,20 +3,22 @@ package dev.bhavindesai.dogstagram.ui.fragments.dogimages
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
-import com.facebook.drawee.view.SimpleDraweeView
+import com.squareup.picasso.Picasso
+import com.stfalcon.imageviewer.StfalconImageViewer
 import dev.bhavindesai.dogstagram.R
 import dev.bhavindesai.dogstagram.ui.utils.screenRectPx
 
 class DogImageGridAdapter(
-    context: Context,
-    private val spanCount: Int,
-    private val images: List<String>
+    private val context: Context,
+    spanCount: Int,
+    private val images: List<String>,
 ): RecyclerView.Adapter<DogImageGridAdapter.ViewHolder>() {
 
     private val spacing = context.resources.getDimension(R.dimen.grid_dog_images_spacing).toInt()
-
-    class ViewHolder(val dogImage: SimpleDraweeView): RecyclerView.ViewHolder(dogImage)
+    private lateinit var viewer: StfalconImageViewer<String>
+    private val dimension = (screenRectPx.width()/spanCount) - spacing
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder = ViewHolder(
         LayoutInflater.from(parent.context).inflate(
@@ -24,15 +26,37 @@ class DogImageGridAdapter(
             parent,
             false
         ).apply {
-            layoutParams.width = (screenRectPx.width()/spanCount) - spacing
-            layoutParams.height = (screenRectPx.width()/spanCount) - spacing
-        } as SimpleDraweeView
+            layoutParams.width = dimension
+            layoutParams.height = dimension
+        } as ImageView
     )
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.dogImage.setImageURI(images[position])
+        Picasso.get()
+            .load(images[position])
+            .resize(dimension, dimension)
+            .centerCrop()
+            .placeholder(R.drawable.dog_placeholder)
+            .into(holder.dogImage)
+
+        holder.dogImage.setOnClickListener {
+            openViewer(position, holder.dogImage, images)
+        }
+    }
+
+    private fun openViewer(startPosition: Int, target: ImageView, images: List<String>) {
+        viewer = StfalconImageViewer.Builder(context, images) { view, image ->
+            Picasso.get().load(image).into(view)
+        }
+            .withStartPosition(startPosition)
+            .withTransitionFrom(target)
+            .withImageChangeListener {
+                viewer.updateTransitionImage(target)
+            }
+            .show()
     }
 
     override fun getItemCount() = images.size
 
+    class ViewHolder(val dogImage: ImageView): RecyclerView.ViewHolder(dogImage)
 }

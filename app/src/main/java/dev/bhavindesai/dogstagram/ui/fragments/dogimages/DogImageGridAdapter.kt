@@ -20,7 +20,7 @@ class DogImageGridAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder = ViewHolder(
         LayoutInflater.from(parent.context).inflate(
-            R.layout.`grid_item_dog_image.xml`,
+            R.layout.grid_item_dog_image,
             parent,
             false
         ).apply {

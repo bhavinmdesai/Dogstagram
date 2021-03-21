@@ -2,4 +2,5 @@
 <resources>
     <dimen name="breed_start_margin">24dp</dimen>
     <dimen name="subbreed_start_margin">48dp</dimen>
+    <dimen name="grid_dog_images_spacing">8dp</dimen>
 </resources>

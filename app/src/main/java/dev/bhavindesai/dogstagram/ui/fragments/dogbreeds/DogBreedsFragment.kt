@@ -5,16 +5,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.content.ContextCompat
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.multilevelview.MultiLevelAdapter
-import com.multilevelview.MultiLevelRecyclerView
-import com.multilevelview.models.RecyclerViewItem
-import dev.bhavindesai.dogstagram.R
 import dev.bhavindesai.dogstagram.databinding.FragmentDogBreedsBinding
-import dev.bhavindesai.dogstagram.databinding.ListItemDogBreedBinding
 import dev.bhavindesai.dogstagram.ui.fragments.base.BaseFragment
 import dev.bhavindesai.viewmodels.DogBreedsViewModel
 import kotlinx.coroutines.FlowPreview
@@ -73,11 +66,9 @@ class DogBreedsFragment : BaseFragment(), DogBreedClickListener {
     }
 
     override fun onDogBreedClick(breed: DogBreedItem) {
-        if (breed.level == 0) {
-            Log.v("DogBreedsFragment", breed.breedName)
-        } else {
-            val subBreed = breed as DogSubBreedItem
-            Log.v("DogBreedsFragment", "${subBreed.breedName} ${subBreed.subBreedName}")
-        }
+        findNavController().navigate(DogBreedsFragmentDirections.actionDogBreedsFragmentToDogImagesFragment(
+            breed.breedName,
+            (breed as? DogSubBreedItem)?.subBreedName
+        ))
     }
 }

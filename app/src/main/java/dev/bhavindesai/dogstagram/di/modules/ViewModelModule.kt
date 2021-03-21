@@ -8,6 +8,7 @@ import dagger.Module
 import dagger.multibindings.IntoMap
 import dev.bhavindesai.dogstagram.di.DaggerViewModelFactory
 import dev.bhavindesai.viewmodels.DogBreedsViewModel
+import dev.bhavindesai.viewmodels.DogImagesViewModel
 import kotlin.reflect.KClass
 
 /** Annotation definition for manually creating ViewModel providers / bindings */
@@ -22,4 +23,7 @@ abstract class ViewModelModule {
 
     @[Binds IntoMap ViewModelKey(DogBreedsViewModel::class)]
     internal abstract fun bindDogBreedsViewModel(viewModel: DogBreedsViewModel): ViewModel
+
+    @[Binds IntoMap ViewModelKey(DogImagesViewModel::class)]
+    internal abstract fun bindDogImagesViewModel(viewModel: DogImagesViewModel): ViewModel
 }

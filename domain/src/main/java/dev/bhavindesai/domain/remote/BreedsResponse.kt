@@ -1,7 +1,7 @@
 package dev.bhavindesai.domain.remote
 
-data class DogBreedsResponse(
-    val message: Map<String, List<String>>,
+data class DogBreedsResponse<T>(
+    val message: T,
     val status: String
 )
 
@@ -13,20 +13,17 @@ inline class SubBreedId(val v: String) {
     operator fun invoke() = v
 }
 
-data class FullBreedId(val parentId: BreedId, val subId: SubBreedId?)
-
 data class Breed(
     val id: BreedId,
     val subBreeds: List<SubBreed>?
-) {
-    val fullId = FullBreedId(id, null)
-}
+)
 
-data class SubBreed(val parentId: BreedId, val id: SubBreedId) {
-    val fullId = FullBreedId(parentId, id)
-}
+data class SubBreed(
+    val parentId: BreedId,
+    val id: SubBreedId
+)
 
-fun DogBreedsResponse.toDomain() =
+fun DogBreedsResponse<Map<String, List<String>>>.toDomain() =
     message
         .entries
         .map { (breed, subBreeds) ->

@@ -9,5 +9,22 @@
         android:id="@+id/dogBreedsFragment"
         android:name="dev.bhavindesai.dogstagram.ui.fragments.dogbreeds.DogBreedsFragment"
         android:label="fragment_dog_breeds"
-        tools:layout="@layout/fragment_dog_breeds" />
+        tools:layout="@layout/fragment_dog_breeds" >
+        <action
+            android:id="@+id/action_dogBreedsFragment_to_dogImagesFragment"
+            app:destination="@id/dogImagesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/dogImagesFragment"
+        android:name="dev.bhavindesai.dogstagram.ui.fragments.dogimages.DogImagesFragment"
+        android:label="Dog Images"
+        tools:layout="@layout/fragment_dog_images" >
+        <argument
+            android:name="breed"
+            app:argType="string" />
+        <argument
+            android:name="sub_breed"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
 </navigation>

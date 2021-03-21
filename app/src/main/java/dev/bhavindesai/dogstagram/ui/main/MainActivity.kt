@@ -1,7 +1,8 @@
-package dev.bhavindesai.dogstagram
+package dev.bhavindesai.dogstagram.ui.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import dev.bhavindesai.dogstagram.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

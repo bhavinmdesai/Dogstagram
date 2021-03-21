@@ -1,2 +1,5 @@
+include ':domain'
+include ':data'
+include ':viewmodels'
 include ':app'
 rootProject.name = "Dogstagram"

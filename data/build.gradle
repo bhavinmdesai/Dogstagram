@@ -33,6 +33,10 @@ android {
     }
 }
 
+configurations {
+    dataTestDependencies.extendsFrom testImplementation
+}
+
 dependencies {
 
     api project(path: ':domain')
@@ -43,4 +47,8 @@ dependencies {
     api 'com.squareup.retrofit2:retrofit:2.9.0'
     api 'com.squareup.retrofit2:converter-gson:2.6.1'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.2'
+
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation "io.mockk:mockk:1.10.2"
+    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.2'
 }

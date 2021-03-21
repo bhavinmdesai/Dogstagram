@@ -20,7 +20,7 @@ class DogRepository(
         }
     }
 
-    fun getDogImages(breed: String, subBreed: String?) = rdsDogImages
+    fun getDogImages(breed: String, subBreed: String? = null) = rdsDogImages
             .getRemoteData(breed to subBreed)
             .map { it.message }
 

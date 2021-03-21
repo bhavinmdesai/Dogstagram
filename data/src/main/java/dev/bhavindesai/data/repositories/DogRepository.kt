@@ -17,7 +17,7 @@ class DogRepository(
 ) {
 
     @FlowPreview
-    suspend fun getDogBreeds() = flow {
+    fun getDogBreeds() = flow {
         rdsDogBreeds.getRemoteData(Unit).collect {
             emit(it.toDomain().toList())
         }

@@ -1,7 +1,6 @@
 package dev.bhavindesai.dogstagram.ui.fragments.dogbreeds
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,13 +16,6 @@ class DogBreedsFragment : BaseFragment(), DogBreedClickListener {
     private val viewModel: DogBreedsViewModel by lazyViewModel()
     private lateinit var binding: FragmentDogBreedsBinding
 
-    @FlowPreview
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        viewModel.fetchDogBreeds()
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,12 +24,14 @@ class DogBreedsFragment : BaseFragment(), DogBreedClickListener {
         return binding.root
     }
 
+    @FlowPreview
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         observeData()
     }
 
+    @FlowPreview
     private fun observeData() {
         viewModel.listOfDogBreed.observe(viewLifecycleOwner) {
             val itemList = mutableListOf<DogBreedItem>()

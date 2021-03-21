@@ -12,15 +12,8 @@ class DogBreedsViewModel @Inject constructor(
     private val dogRepository: DogRepository
 ) : ViewModel() {
 
-    private val mldListOfDogBreed = MutableLiveData<List<Breed>>()
-    val listOfDogBreed: LiveData<List<Breed>> = mldListOfDogBreed
-
     @FlowPreview
-    fun fetchDogBreeds() {
-        viewModelScope.launch {
-            dogRepository.getDogBreeds().collect {
-                mldListOfDogBreed.value = it
-            }
-        }
-    }
+    val listOfDogBreed: LiveData<List<Breed>> = dogRepository
+        .getDogBreeds()
+        .asLiveData(viewModelScope.coroutineContext)
 }

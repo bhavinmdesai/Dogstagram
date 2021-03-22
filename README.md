@@ -1,4 +1,6 @@
-# Dogstagram - Instagram for Dogs! 😉
+![logo](https://github.com/bhavinmdesai/Dogstagram/blob/master/app/src/main/ic_launcher-playstore.png =250x)
+
+# Dogstagram - Instagram for Dogs! :wink:
 
 Here are the features of the app:
 

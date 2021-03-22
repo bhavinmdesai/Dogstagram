@@ -1,4 +1,4 @@
-![logo](https://github.com/bhavinmdesai/Dogstagram/blob/master/app/src/main/ic_launcher-playstore.png =250x)
+<img src="https://github.com/bhavinmdesai/Dogstagram/blob/master/app/src/main/ic_launcher-playstore.png?raw=true" width="200" height="200" />
 
 # Dogstagram - Instagram for Dogs! :wink:
 
